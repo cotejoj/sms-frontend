@@ -7,13 +7,15 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
     email: '',
     age: '',
     gender: '',
-    courses: [],
+    course:'',
   });
   const [coursesList, setCoursesList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const token = localStorage.getItem('token');
+
+
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -45,7 +47,7 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
           email: student.email || '',
           age: student.age || '',
           gender: student.gender || '',
-          courses: student.courses ? student.courses.map((c) => c._id || c) : [],
+          course: student.course ? student.course.name : 'Unknown Course',
         });
       } catch (err) {
         setError('Failed to load student data');
@@ -60,16 +62,17 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'courses') {
-      const options = e.target.options;
-      const selected = [];
-      for (let i = 0; i < options.length; i++) {
-        if (options[i].selected) selected.push(options[i].value);
-      }
-      setForm((prev) => ({ ...prev, courses: selected }));
-    } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
-    }
+    // if (name === 'courses') {
+    //   const options = e.target.options;
+    //   const selected = [];
+    //   for (let i = 0; i < options.length; i++) {
+    //     if (options[i].selected) selected.push(options[i].value);
+    //   }
+    //   setForm((prev) => ({ ...prev, courses: selected }));
+    // } else {
+    //   setForm((prev) => ({ ...prev, [name]: value }));
+    // }
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -191,13 +194,22 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
         </select>
 
         <label htmlFor="courses" className="block mb-1 font-medium">
-          Courses
+          Course
         </label>
+        {/* <input
+          id="course"
+          name="course"
+          type="text"
+          value={form.course}
+          onChange={handleChange}
+          className="w-full p-2 border rounded mb-4"
+          disabled={loading}
+        /> */}
         <select
-          id="courses"
-          name="courses"
-          multiple
-          value={form.courses}
+          id="course"
+          name="course"
+          required
+          value={form.course}
           onChange={handleChange}
           className="w-full p-2 border rounded mb-6"
           disabled={loading}
