@@ -10,6 +10,7 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
     course:'',
   });
   const [coursesList, setCoursesList] = useState([]);
+  const [courseId, setCourseId] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -47,7 +48,7 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
           email: student.email || '',
           age: student.age || '',
           gender: student.gender || '',
-          course: student.course ? student.course.name : 'Unknown Course',
+          course: student.course._id,
         });
       } catch (err) {
         setError('Failed to load student data');
@@ -61,7 +62,7 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    console.log('handleChange called with:', { name, value });
     // if (name === 'courses') {
     //   const options = e.target.options;
     //   const selected = [];
@@ -79,7 +80,6 @@ const StudentForm = ({ studentId, onSuccess, onClose }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-
     try {
       if (studentId) {
         await axios.put(
