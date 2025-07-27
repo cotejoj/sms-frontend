@@ -107,7 +107,7 @@ const StudentsPage = () => {
             <th className="p-3 text-left">Email</th>
             <th className="p-3 text-left">Enrollment Number</th>
             <th className="p-3 text-left">Gender</th>
-            <th className="p-3 text-left">Courses</th>
+            <th className="p-3 text-left">Course</th>
             <th className="p-3 text-left">Actions</th> {/* Added for Edit */}
           </tr>
         </thead>
@@ -126,9 +126,7 @@ const StudentsPage = () => {
                 <td className="p-3">{student.enrollmentNumber}</td>
                 <td className="p-3">{student.gender}</td>
                 <td className="p-3">
-                  {student.courses && student.courses.length > 0
-                    ? student.courses.map((c) => c.name || c).join(', ')
-                    : '—'}
+                  {student.course.name || 'Unknown Course'}
                 </td>
                 <td className="p-3">
                   <button
