@@ -103,11 +103,14 @@ const StudentsPage = () => {
       <table className="w-full bg-white rounded shadow overflow-hidden">
         <thead className="bg-gray-200">
           <tr>
-            <th className="p-3 text-left">Name</th>
+            <th className="p-3 text-left">First Name</th>
+            <th className="p-3 text-left">Middle Name</th>
+            <th className="p-3 text-left">Last Name</th>
             <th className="p-3 text-left">Email</th>
             <th className="p-3 text-left">Enrollment Number</th>
             <th className="p-3 text-left">Gender</th>
             <th className="p-3 text-left">Course</th>
+            <th className="p-3 text-left">Status</th>
             <th className="p-3 text-left">Actions</th> {/* Added for Edit */}
           </tr>
         </thead>
@@ -121,13 +124,16 @@ const StudentsPage = () => {
           ) : (
             students.map((student) => (
               <tr key={student._id} className="border-t">
-                <td className="p-3">{student.name}</td>
+                <td className="p-3">{student.firstName}</td>
+                <td className="p-3">{student.middleName}</td>
+                <td className="p-3">{student.lastName}</td>
                 <td className="p-3">{student.email}</td>
                 <td className="p-3">{student.enrollmentNumber}</td>
                 <td className="p-3">{student.gender}</td>
                 <td className="p-3">
                   {student.course.name || 'Unknown Course'}
                 </td>
+                <td className="p-3">{student.status}</td>
                 <td className="p-3">
                   <button
                     onClick={() => openForm(student._id)}
