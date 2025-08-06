@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import {LoginPage} from './pages/LoginPage';
-// import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 // import StudentsPage from './pages/StudentsPage';
 
 const RequireAuth = ({ children }) => {
@@ -18,15 +18,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      {/* <Route
+      <Route
         path="/dashboard"
         element={
           <RequireAuth>
             <Dashboard />
           </RequireAuth>
         }
-      />
-      <Route 
+      /> 
+      {/* <Route 
         path="/students"
         element={
           <RequireAuth>
