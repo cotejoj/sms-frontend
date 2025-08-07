@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import {LoginPage} from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
+import { AppSidebar } from "@/components/app-sidebar"
+
 // import StudentsPage from './pages/StudentsPage';
 
 const RequireAuth = ({ children }) => {
